@@ -5,6 +5,12 @@ import { CreateNotificationDto } from 'src/dto/create-notification.dto';
 import { Notification, NotificationDocument, NotificationType } from 'src/schemas/notification.schema';
 import { User } from 'src/schemas/user.schema';
 import { UsersService } from 'src/users/users.service';
+import Bottleneck from "bottleneck";
+
+const limiter = new Bottleneck({
+    maxConcurrent: 5, /** max concurrent requests in the same  minute */
+    minTime: 200 /** minimum time to receive a response */
+});
 
 @Injectable()
 export class NotificationsService {
@@ -65,13 +71,18 @@ export class NotificationsService {
         return createdNotification.save();
     }
 
-    sendSMSForUser(user: User, body: Object): void {
+    async sendSMSForUser(user: User, body: Object): Promise<void> {
         /** Should use SMS provider */
+        await limiter.schedule(async () => this.callingTheSMSProvider(user, body));
         return;
     }
 
     sendNotificationForUser(user: User, body: Object): void {
         /** Should use firebase for push-notification */
         return;
+    }
+
+    callingTheSMSProvider(user: User, body: Object) {
+        /** should construct a request body to the service */
     }
 }
