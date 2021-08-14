@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type GroupDocument = Group & Document;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Group {
     @Prop()
     name: string;

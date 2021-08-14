@@ -5,13 +5,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { GroupsModule } from './groups/groups.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING),
     UsersModule,
-    GroupsModule
+    GroupsModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -18,6 +18,14 @@ export class UsersService {
         return this.userModel.find().exec();
     }
 
+    async findByUserId(userId: string): Promise<User> {
+        return this.userModel.findById(userId).exec();
+    }
+
+    async findByGroupId(groupId: string): Promise<User[]> {
+        return this.userModel.find({ groupId: groupId }).exec();
+    }
+
     async updateById(id: string, updateUserDto: UpdateUserDto): Promise<User> {
         return await this.userModel.findByIdAndUpdate({ _id: id }, updateUserDto, { new: true });
     }
