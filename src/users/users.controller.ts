@@ -1,10 +1,10 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from 'src/dto/create-user.dto';
-import { User } from 'src/schemas/user.schema';
 import { UsersService } from './users.service';
 import * as bcrypt from 'bcrypt';
-import { UpdateUserDto } from 'src/dto/update-user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UpdateUserDto } from '../dto/update-user.dto';
+import { User } from '../schemas/user.schema';
 
 
 @ApiTags('users')

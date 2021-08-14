@@ -1,5 +1,5 @@
 import { ApiHideProperty } from '@nestjs/swagger';
-import { NotificationType } from 'src/schemas/notification.schema';
+import { NotificationType } from '../schemas/notification.schema';
 
 export class CreateNotificationDto {
     type: NotificationType;

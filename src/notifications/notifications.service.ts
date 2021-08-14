@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateNotificationDto } from 'src/dto/create-notification.dto';
-import { Notification, NotificationDocument, NotificationType } from 'src/schemas/notification.schema';
-import { User } from 'src/schemas/user.schema';
-import { UsersService } from 'src/users/users.service';
 import Bottleneck from "bottleneck";
+import { Notification, NotificationDocument, NotificationType } from '../schemas/notification.schema';
+import { CreateNotificationDto } from '../dto/create-notification.dto';
+import { UsersService } from '../users/users.service';
+import { User } from '../schemas/user.schema';
 
 const limiter = new Bottleneck({
     maxConcurrent: 5, /** max concurrent requests in the same  minute */
